@@ -14,28 +14,30 @@
 // }
 
 
-App app;
+static App *app = createAppInstance();
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_yoki_render_RenderNativeBridge_init(JNIEnv *env, jclass clazz) {
-    app.init();
+    app->init();
 }
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_yoki_render_RenderNativeBridge_resize(JNIEnv *env, jclass clazz , jint width , jint height) {
-    app.resize(width , height);
+    app->resize(width , height);
 }
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_yoki_render_RenderNativeBridge_update(JNIEnv *env, jclass clazz ,jlong delta_time) {
-    app.update(delta_time);
+    app->update(delta_time);
 }
 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_yoki_render_RenderNativeBridge_destory(JNIEnv *env, jclass clazz) {
-    app.destory();
+    app->destory();
+    delete app;
+    app = nullptr;
 }

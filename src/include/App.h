@@ -19,5 +19,24 @@ public:
     int mViewHeight;
 };
 
+class SimpleApp : public App{
+public:
+    // init when create
+    virtual void init();
+
+    // update each frame
+    virtual void update(long delta_time);
+
+    // destory when app exit
+    virtual void destory();
+
+    virtual void resize(int width , int height);
+};
+
+
+static inline App* createAppInstance(){
+    return new SimpleApp();
+}
+
 #endif
 

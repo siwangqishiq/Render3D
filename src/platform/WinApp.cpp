@@ -6,7 +6,10 @@
 
 long long lastRenderTime;
 
-App app;
+const int screenWidth = 1280;
+const int screenHeight = 800;
+
+static App *app = createAppInstance();
 
 static void processInput(GLFWwindow *window) {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
@@ -17,7 +20,7 @@ static void processInput(GLFWwindow *window) {
 
 static void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
-    app.resize(width , height);
+    app->resize(width , height);
 }
 
 long long currentTime(){
@@ -35,7 +38,7 @@ int main(int argc , char **argv){
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // --------------------
-    window = glfwCreateWindow(800, 600, "Yoki Windows", nullptr, nullptr);
+    window = glfwCreateWindow(screenWidth, screenHeight, "Yoki Windows", nullptr, nullptr);
 	
     if (window == nullptr) {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -55,7 +58,8 @@ int main(int argc , char **argv){
 
 	glEnable(GL_DEPTH_TEST);//开启深度测试
 
-    app.init();
+    app->init();
+    app->resize(screenWidth , screenHeight);
 
     //main loop
     while (!glfwWindowShouldClose(window)) {
@@ -69,13 +73,16 @@ int main(int argc , char **argv){
 		}
 		lastRenderTime = currentTimeM;
 		
-        app.update(deltaTime);
+        app->update(deltaTime);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
-	app.destory();
+	app->destory();
+
+    delete app;
+    app = nullptr;
 
 	glfwTerminate();
     return 0;
