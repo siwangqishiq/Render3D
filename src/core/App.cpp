@@ -23,8 +23,6 @@ void App::destory(){
     std::cout << "destory" << std::endl;
 }
 
-
-
 void SimpleApp::init(){
     std::cout << "SimpleApp init" << std::endl;
 }

@@ -4,12 +4,14 @@
 #include <iostream>
 #include <chrono>
 
+#include "TriangleApp.h"
+
 long long lastRenderTime;
 
 const int screenWidth = 1280;
 const int screenHeight = 800;
 
-static App *app = createAppInstance();
+static App *app = new TriangleApp();
 
 static void processInput(GLFWwindow *window) {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
@@ -56,15 +58,14 @@ int main(int argc , char **argv){
         return -1;
     }
 
-	glEnable(GL_DEPTH_TEST);//开启深度测试
-
     app->init();
     app->resize(screenWidth , screenHeight);
+
+	glEnable(GL_DEPTH_TEST);//开启深度测试
 
     //main loop
     while (!glfwWindowShouldClose(window)) {
         processInput(window);
-
 		
 		long long deltaTime = 0;
 		long long currentTimeM = currentTime();

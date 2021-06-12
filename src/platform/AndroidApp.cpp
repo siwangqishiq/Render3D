@@ -3,6 +3,8 @@
 #include <vector>
 #include "App.h"
 
+#include "TriangleApp.h"
+
 // extern std::string show_platform();
 
 // extern "C"
@@ -14,7 +16,7 @@
 // }
 
 
-static App *app = createAppInstance();
+static App *app = new TriangleApp();
 
 extern "C"
 JNIEXPORT void JNICALL

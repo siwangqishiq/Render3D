@@ -2,6 +2,8 @@
 #ifndef _GL_H_
 #define _GL_H_
 
+#include "glad/glad.h"
+
 #ifdef _WIN32
 #include <glad/glad.h>
 #elif __APPLE__

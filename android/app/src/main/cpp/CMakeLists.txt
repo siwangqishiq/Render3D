@@ -27,6 +27,9 @@ add_library( # Sets the name of the library.
 
             ${SRC_DIR}/platform/AndroidApp.cpp
             ${SRC_DIR}/core/App.cpp
+            ${SRC_DIR}/core/Shader.cpp
+            ${SRC_DIR}/core/Shape.cpp
+            ${SRC_DIR}/example/TriangleApp.cpp
         )
 
 # Searches for a specified prebuilt library and stores the path as a
