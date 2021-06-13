@@ -19,6 +19,7 @@ project("render")
 set(SRC_DIR "../../../../../src")  #源码
 
 include_directories(${SRC_DIR}/include) #添加include目录
+include_directories(include)
 
 add_library( # Sets the name of the library.
             render3d

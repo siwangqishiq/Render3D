@@ -3,11 +3,26 @@
 #include <string>
 #include <iostream>
 
+#include "glsl.h"
+
 void Triangle::onInit(){
 
-    std::string vertexSrc = "#version 330 es\n layout(location = 0) in vec2 aPos;\n void main() {\n gl_Position = vec4(aPos ,0.0 , 1.0); \n}";
+    //std::string vertexSrc = "#version 330 es\n layout(location = 0) in vec2 aPos;\n void main() {\n gl_Position = vec4(aPos ,0.0 , 1.0); \n}";
+    //std::string fragSrc = "#version 330 es\n out vec4 FragColor;\n void main(){\n FragColor = vec4(1.0f , 0.0f , 0.0f , 1.0f);\n}";
 
-    std::string fragSrc = "#version 330 es\n out vec4 FragColor;\n void main(){\n FragColor = vec4(1.0f , 0.0f , 0.0f , 1.0f);\n}";
+    std::string vertexSrc = GLSL( 
+        layout(location = 0) in vec2 aPos;
+        void main(){
+            gl_Position = vec4(aPos.x , aPos.y ,0.0 , 1.0);
+        }
+    );
+
+    std::string fragSrc = GLSL(
+        out vec4 FragColor;
+        void main(){
+            FragColor = vec4(0.0f , 1.0f , 1.0f , 1.0f);
+        }
+    );
 
     shader = Shader::buildGPUProgram(vertexSrc , fragSrc);
 
