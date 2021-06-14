@@ -5,13 +5,13 @@ public final class RenderNativeBridge {
         System.loadLibrary("render3d");
     }
 
-    public static native String stringFromJNI();
+    public native String stringFromJNI();
 
-    public static native void init();
+    public native void init();
 
-    public static native void update(long delta);
+    public native void update(long delta);
 
-    public static native void destory();
+    public native void destory();
 
-    public static native void resize(int width , int height);
+    public native void resize(int width , int height);
 }
