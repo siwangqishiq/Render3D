@@ -114,12 +114,15 @@ void Cube::onRender(long deltaTime){
     glBindVertexArray(vao);
 
     glm::mat4 modelMat = glm::mat4(1.0f);
-    modelMat = glm::translate(modelMat, glm::vec3(0 , 0 , 0));
+    modelMat = glm::translate(modelMat, this->positon);
     modelMat = glm::rotate(modelMat , this->angleX , glm::vec3(1 ,  0, 0));
     modelMat = glm::rotate(modelMat , this->angleY , glm::vec3(0 ,  1, 0));
     modelMat = glm::rotate(modelMat , this->angleZ , glm::vec3(0 ,  0, 1));
 
     angleY += this->moveSpeed;
+
+    this->positon.x = 2*glm::sin(angleY);
+
     //modelMat = glm::scale(modelMat , glm::vec3(3 , 3 , 3));
     glm::vec3 cameraPosition = camera->getPostion();
     cameraPosition[2] += 1.0;

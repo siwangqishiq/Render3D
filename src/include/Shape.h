@@ -100,7 +100,7 @@ private:
 
     Shader shader;
 
-    float moveSpeed = 0.001;//移动速度
+    float moveSpeed = 0.0005;//移动速度
     
     void buildTexture();
 };
