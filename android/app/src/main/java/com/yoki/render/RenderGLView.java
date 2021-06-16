@@ -10,6 +10,8 @@ import javax.microedition.khronos.opengles.GL10;
 public class RenderGLView extends GLSurfaceView implements GLSurfaceView.Renderer {
     private RenderNativeBridge mNativeBridge = new RenderNativeBridge();
 
+    private long lastRenderTime = -1;
+
     public RenderGLView(Context context) {
         super(context);
         initView();
@@ -41,7 +43,15 @@ public class RenderGLView extends GLSurfaceView implements GLSurfaceView.Rendere
 
     @Override
     public void onDrawFrame(GL10 gl) {
-        mNativeBridge.update(1);
+        long deltaTime = 0;
+        long currentTime = System.currentTimeMillis();
+        if(lastRenderTime >= 0){
+            deltaTime = currentTime - lastRenderTime;
+        }
+        //System.out.println("deltaTime = " + deltaTime);
+        lastRenderTime = currentTime;
+        mNativeBridge.update(deltaTime);
+
     }
 
     @Override

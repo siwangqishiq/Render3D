@@ -119,7 +119,8 @@ void Cube::onRender(long deltaTime){
     modelMat = glm::rotate(modelMat , this->angleY , glm::vec3(0 ,  1, 0));
     modelMat = glm::rotate(modelMat , this->angleZ , glm::vec3(0 ,  0, 1));
 
-    angleY += this->moveSpeed;
+    //std::cout << "deltaTime = " << deltaTime << std::endl; 
+    angleY += deltaTime * (this->moveSpeed);
 
     this->positon.x = 2*glm::sin(angleY);
 

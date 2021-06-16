@@ -4,6 +4,7 @@
 #include "App.h"
 
 #include "TriangleApp.h"
+#include "CubeApp.h"
 
 // extern std::string show_platform();
 
@@ -21,7 +22,9 @@ static App *app = nullptr;
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_yoki_render_RenderNativeBridge_init(JNIEnv *env, jobject thiz) {
-    app = new TriangleApp();
+    // app = new TriangleApp();
+    app = new CubeApp();
+    
     app->init();
 }
 

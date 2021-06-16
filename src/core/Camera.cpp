@@ -8,7 +8,7 @@ Camera::Camera(glm::vec3 _pos , glm::vec3 _dest , float _aspect){
     this->aspect = _aspect;
 
     worldUp = glm::vec3(0.0f , 1.0f , 0.0f);
-
+    
     updateCameraData();
 }
 
