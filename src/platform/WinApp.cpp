@@ -1,6 +1,7 @@
 #include "gl.h"
 #include <GLFW/glfw3.h>
 #include "App.h"
+#include "PlatformWindows.h"
 #include <iostream>
 #include <chrono>
 
@@ -59,6 +60,9 @@ int main(int argc , char **argv){
         std::cout << "Failed to initialize GLAD" << std::endl;
         return -1;
     }
+
+    //平台相关接口实现
+    app->setResLoader(std::make_shared<WindowsResLoader>());
 
     app->init();
     app->resize(screenWidth , screenHeight);

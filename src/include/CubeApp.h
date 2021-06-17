@@ -9,7 +9,7 @@
 class CubeApp : public App{
 private:
     Cube *cube;
-
+    
 public:
     virtual void resize(int width , int height);
 

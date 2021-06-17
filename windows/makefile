@@ -17,6 +17,7 @@ compile: build_dir \
 		${BUILD_DIR}/Shape.o \
 		${BUILD_DIR}/TriangleApp.o \
 		${BUILD_DIR}/CubeApp.o \
+		${BUILD_DIR}/PlatformWindows.o \
 		${BUILD_DIR}/App.o \ 
 
 
@@ -31,6 +32,9 @@ ${BUILD_DIR}/Shader.o:${SRC_DIR}/core/Shader.cpp
 
 ${BUILD_DIR}/Camera.o:${SRC_DIR}/core/Camera.cpp
 	${CC} -std=${STD} -c ${SRC_DIR}/core/Camera.cpp -o ${BUILD_DIR}/Camera.o -Iinclude -I${INCLUDE_DIR}
+
+${BUILD_DIR}/PlatformWindows.o:${SRC_DIR}/platform/PlatformWindows.cpp
+	${CC} -std=${STD} -c ${SRC_DIR}/platform/PlatformWindows.cpp -o ${BUILD_DIR}/PlatformWindows.o -Iinclude -I${INCLUDE_DIR}
 
 ${BUILD_DIR}/App.o:${SRC_DIR}/core/App.cpp
 	${CC} -std=${STD} -c ${SRC_DIR}/core/App.cpp -o ${BUILD_DIR}/App.o -Iinclude -I${INCLUDE_DIR}

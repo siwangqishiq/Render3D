@@ -8,6 +8,7 @@
 #include "gl.h"
 #include "Shader.h"
 #include "Camera.h"
+#include "App.h"
 
 //三角形
 class Triangle{
@@ -32,7 +33,8 @@ public:
 //立方体
 class Cube{
 public:
-    Cube();
+    Cube(App *appContext);
+
     ~Cube();
 
     void onInit(int viewWidth , int viewHeight);
@@ -86,6 +88,8 @@ private:
         -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
         -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
     };
+
+    App *context;
 
     unsigned int textureId;
 

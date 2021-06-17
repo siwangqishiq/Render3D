@@ -1,5 +1,4 @@
 #include "Shape.h"
-
 #include <string>
 #include <iostream>
 
@@ -50,7 +49,8 @@ void Triangle::onDestory(){
     glDeleteBuffers(1 , &vbo);
 }
 
-Cube::Cube(){
+Cube::Cube(App *appContext){
+    this->context = appContext;
 }
 
 Cube::~Cube(){
@@ -77,20 +77,21 @@ void Cube::onInit(int viewWidth , int viewHeight){
 
     std::string fragSrc = GLSL(
         in vec2 vTexCoord;
-        //uniform sampler2D imageTexture;
+        uniform sampler2D imageTexture;
 
         out vec4 fragColor;
 
         void main(){
-            fragColor = vec4(0.0 , 0.0 , 1.0 , 1.0);
+            // fragColor = vec4(0.0 , 0.0 , 1.0 , 1.0);
             //fragColor = vec4(1.0 , 0.0 , 0.0 , 1.0);
-            //vec4 color1 = texture(imageTexture , vTexCoord);
-            //fragColor = color1;
+            vec4 color1 = texture(imageTexture , vTexCoord);
+            fragColor = color1;
         }
     );
 
     shader = Shader::buildGPUProgram(vertexSrc , fragSrc);
 
+    buildTexture();
     glGenVertexArrays(1 , &vao);
     glGenBuffers(1 , &vbo);
     
@@ -109,6 +110,11 @@ void Cube::onInit(int viewWidth , int viewHeight){
     glBindVertexArray(0);
 }
 
+void Cube::buildTexture(){
+    TextureInfo info = context->loadAssetsTexture("box2.png" , true);
+    this->textureId = info.textureId;
+}
+
 void Cube::onRender(long deltaTime){
     shader.useShader();
     glBindVertexArray(vao);
@@ -121,8 +127,7 @@ void Cube::onRender(long deltaTime){
 
     //std::cout << "deltaTime = " << deltaTime << std::endl; 
     angleY += deltaTime * (this->moveSpeed);
-
-    this->positon.x = 2*glm::sin(angleY);
+    this->positon.x = glm::sin(angleY);
 
     //modelMat = glm::scale(modelMat , glm::vec3(3 , 3 , 3));
     glm::vec3 cameraPosition = camera->getPostion();
@@ -133,11 +138,11 @@ void Cube::onRender(long deltaTime){
 
     glm::vec3 p = camera->getPostion();
     //std::cout << "pos = " << p[0] << " " << p[1] << " " << p[2] << std::endl;
-
+    
     shader.setUniformMat4("viewMat", camera->getCameraMatrix());
     shader.setUniformMat4("projMat", camera->getPerspectiveMatrix());
 
-    //glBindTexture(GL_TEXTURE_2D , this->textureId);
+    glBindTexture(GL_TEXTURE_2D , this->textureId);
 
     glDrawArrays(GL_TRIANGLES , 0 , 36);
     
