@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        RenderNativeBridge.setAssetManager(getAssets());
         setContentView(new RenderGLView(this));
     }
 }//end class

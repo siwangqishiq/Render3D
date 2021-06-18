@@ -2,7 +2,6 @@
 #ifndef _GL_H_
 #define _GL_H_
 
-//for debug
 #include "glad/glad.h"
 
 // #ifdef _WIN32

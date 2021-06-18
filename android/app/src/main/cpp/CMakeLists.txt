@@ -27,6 +27,7 @@ add_library( # Sets the name of the library.
              SHARED
 
             ${SRC_DIR}/platform/AndroidApp.cpp
+            ${SRC_DIR}/platform/PlatformAndroid.cpp
             ${SRC_DIR}/core/App.cpp
             ${SRC_DIR}/core/Shader.cpp
             ${SRC_DIR}/core/Camera.cpp
@@ -57,9 +58,9 @@ target_link_libraries( # Specifies the target library.
                         render3d
                        # Links the target library to the log library
                        # included in the NDK.
+                        android
                         ${log-lib}
                         ${OPENGL_LIB}
-                        android
                         ${log-lib}
                         mediandk
                         jnigraphics)

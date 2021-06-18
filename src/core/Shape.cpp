@@ -57,7 +57,7 @@ Cube::~Cube(){
 }
 
 void Cube::onInit(int viewWidth , int viewHeight){
-    camera = new Camera(glm::vec3(0,3,-5) , glm::vec3(0,0,0) , (float)viewWidth / (float)viewHeight);
+    camera = new Camera(glm::vec3(0,2,-5) , glm::vec3(0,0,0) , (float)viewWidth / (float)viewHeight);
 
     std::string vertexSrc = GLSL( 
         layout(location = 0) in vec3 aPos;
@@ -111,11 +111,14 @@ void Cube::onInit(int viewWidth , int viewHeight){
 }
 
 void Cube::buildTexture(){
+    //TextureInfo info = context->loadAssetsTexture("box2.png" , true);
     TextureInfo info = context->loadAssetsTexture("box2.png" , true);
     this->textureId = info.textureId;
 }
 
 void Cube::onRender(long deltaTime){
+    glEnable(GL_DEPTH_TEST);
+
     shader.useShader();
     glBindVertexArray(vao);
 
@@ -144,6 +147,8 @@ void Cube::onRender(long deltaTime){
 
     glBindTexture(GL_TEXTURE_2D , this->textureId);
 
+    
+
     glDrawArrays(GL_TRIANGLES , 0 , 36);
     
     glBindVertexArray(0);
@@ -152,6 +157,7 @@ void Cube::onRender(long deltaTime){
 void Cube::onDestory(){
     glDeleteVertexArrays(1 , &vao);
     glDeleteBuffers(1 , &vbo);
+    glDeleteTextures(1 , &textureId);
 
     if(camera != nullptr){
         delete camera;

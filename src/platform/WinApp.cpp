@@ -67,8 +67,6 @@ int main(int argc , char **argv){
     app->init();
     app->resize(screenWidth , screenHeight);
 
-	glEnable(GL_DEPTH_TEST);//开启深度测试
-
     //main loop
     while (!glfwWindowShouldClose(window)) {
         processInput(window);

@@ -1,5 +1,7 @@
 package com.yoki.render;
 
+import android.content.res.AssetManager;
+
 public final class RenderNativeBridge {
     static {
         System.loadLibrary("render3d");
@@ -14,4 +16,6 @@ public final class RenderNativeBridge {
     public native void destory();
 
     public native void resize(int width , int height);
+
+    public native static void setAssetManager(AssetManager mgr);
 }
