@@ -7,6 +7,7 @@
 
 #include "TriangleApp.h"
 #include "CubeApp.h"
+#include "SkyBox.h"
 
 long long lastRenderTime;
 
@@ -14,7 +15,8 @@ const int screenWidth = 1280;
 const int screenHeight = 800;
 
 // static App *app = new TriangleApp();
-static App *app = new CubeApp();
+// static App *app = new CubeApp();
+static App *app = new SykBoxTestApp();
 
 static void processInput(GLFWwindow *window) {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS){
