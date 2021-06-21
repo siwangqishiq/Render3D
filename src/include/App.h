@@ -4,6 +4,7 @@
 #include <memory>
 #include "IResLoader.h"
 #include <map>
+#include "Camera.h"
 
 //纹理数据
 struct TextureInfo{
@@ -42,6 +43,8 @@ public:
 
     //载入2D纹理
     TextureInfo loadAssetsTexture(std::string path , bool needReleaseData);
+
+    std::shared_ptr<Camera> mCamera = nullptr;
 
 private:
     std::map<std::string , TextureInfo> loadedTextures;//记录已载入的纹理文件 防止重复载入
