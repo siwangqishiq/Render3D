@@ -40,6 +40,8 @@ GLuint CreateGPUProgram(const char* vsShaderSource, const char* fsShaderSource) 
 		glGetProgramInfoLog(program, 1024, &logLen, szLog);
 		printf("Link program fail error log: %s \nvs shader code:\n%s\nfs shader code:\n%s\n", 
 				szLog, "vertexSource", "fragmentSource");
+		LOGE("Link program fail error log: %s \nvs shader code:\n%s\nfs shader code:\n%s\n", 
+				szLog, vsShaderSource, fsShaderSource);
 		glDeleteShader(program);
 		program = 0;
 	}
@@ -98,6 +100,7 @@ GLuint CompileShader(GLenum shaderType, const char* shaderSource) {
 		GLsizei logLen = 0;
 		glGetShaderInfoLog(shader, 1024, &logLen, szLog);
 		printf("Compile Shader fail error log: %s \nshader code:\n%s\n", szLog, shaderCode);
+		LOGE("Compile Shader fail error log: %s \nshader code:\n%s\n", szLog, shaderCode);
 		glDeleteShader(shader);
 		shader = 0;
 	}

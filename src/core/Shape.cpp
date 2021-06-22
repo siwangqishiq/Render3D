@@ -17,6 +17,7 @@ void Triangle::onInit(){
     );
 
     std::string fragSrc = GLSL(
+        precision mediump float; //傻逼鸿蒙 必须要加这个精度限定
         out vec4 FragColor;
         void main(){
             FragColor = vec4(0.0f , 1.0f , 1.0f , 1.0f);
@@ -24,6 +25,7 @@ void Triangle::onInit(){
     );
 
     shader = Shader::buildGPUProgram(vertexSrc , fragSrc);
+    LOGE("shader id = %d\n" , shader.getProgramId());
 
     glGenVertexArrays(1 , &vao);
     glGenBuffers(1 , &vbo);
@@ -76,6 +78,8 @@ void Cube::onInit(int viewWidth , int viewHeight){
     );
 
     std::string fragSrc = GLSL(
+        precision mediump float; //傻逼鸿蒙 必须要加这个精度限定
+        
         in vec2 vTexCoord;
         uniform sampler2D imageTexture;
 

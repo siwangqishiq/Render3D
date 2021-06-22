@@ -23,6 +23,7 @@ void CubeApp::resize(int width , int height){
 void CubeApp::update(long delta_time){
     App::update(delta_time);
     cube->onRender(delta_time);
+    //LOGE("hello\n");
 }
 
 void CubeApp::destory(){
