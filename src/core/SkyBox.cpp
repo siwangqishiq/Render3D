@@ -93,7 +93,8 @@ void SkyBox::render(long deltaTime){
     skyboxShader.useShader();
 
     //std::cout << "camera is null = " << (mContext->mCamera == nullptr) << std::endl;
-    skyboxShader.setUniformMat4("viewMat", mContext->mCamera->getCameraMatrix());
+    glm::mat4 view = glm::mat4(glm::mat3(mContext->mCamera->getCameraMatrix()));
+    skyboxShader.setUniformMat4("viewMat", view);
     skyboxShader.setUniformMat4("projMat", mContext->mCamera->getPerspectiveMatrix());
 
     //render skybox cube
@@ -130,8 +131,8 @@ void SykBoxTestApp::resize(int width , int height){
                                         skyImageFolder + "left.jpg",
                                         skyImageFolder + "top.jpg",
                                         skyImageFolder + "bottom.jpg",
-                                        skyImageFolder + "back.jpg",
                                         skyImageFolder + "front.jpg",
+                                        skyImageFolder + "back.jpg",
                                         };
     mSkyBox = std::make_shared<SkyBox>(this , images);
     mSkyBox->init();
@@ -139,6 +140,28 @@ void SykBoxTestApp::resize(int width , int height){
 
 void SykBoxTestApp::update(long deltaTime){
     App::update(deltaTime);
+
+    if(input->getKeyState(APP_KEY_INPUT_W) == APP_KEY_PRESS){
+        glm::vec3 pos = mCamera->getPostion();
+        pos += mCamera->getForward() * 0.001f;
+        
+        mCamera->movePosition(pos);
+    }else if(input->getKeyState(APP_KEY_INPUT_S) == APP_KEY_PRESS){
+        glm::vec3 pos = mCamera->getPostion();
+        pos -= mCamera->getForward() * 0.001f;
+        
+        mCamera->movePosition(pos);
+    }else if(input->getKeyState(APP_KEY_INPUT_A) == APP_KEY_PRESS){
+        glm::vec3 pos = mCamera->getPostion();
+        pos += mCamera->getRight() * (0.001f);
+        
+        mCamera->movePosition(pos);
+    }else if(input->getKeyState(APP_KEY_INPUT_D) == APP_KEY_PRESS){
+        glm::vec3 pos = mCamera->getPostion();
+        pos += mCamera->getRight() * (-0.001f);
+        
+        mCamera->movePosition(pos);
+    }
 
     mSkyBox->render(deltaTime);
 }
