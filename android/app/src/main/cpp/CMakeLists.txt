@@ -32,6 +32,7 @@ add_library( # Sets the name of the library.
             ${SRC_DIR}/core/Shader.cpp
             ${SRC_DIR}/core/Camera.cpp
             ${SRC_DIR}/core/Shape.cpp
+            ${SRC_DIR}/core/SkyBox.cpp
             ${SRC_DIR}/example/TriangleApp.cpp
             ${SRC_DIR}/example/CubeApp.cpp
         )

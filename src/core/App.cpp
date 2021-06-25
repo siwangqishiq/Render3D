@@ -23,6 +23,11 @@ void App::destory(){
     std::cout << "destory" << std::endl;
 }
 
+void App::processInput(int action){
+	//std::cout << "processInput action = " << action << std::endl;
+	
+}
+
 App::~App(){
     
 }

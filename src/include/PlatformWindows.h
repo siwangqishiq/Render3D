@@ -4,6 +4,8 @@
 #define _PLATFORM_WINDOWS_H_
 
 #include "IResLoader.h"
+#include "IInput.h"
+#include <GLFW/glfw3.h>
 
 //windows下实现
 class WindowsResLoader : public IResLoader{
@@ -21,6 +23,18 @@ public:
     virtual std::string loadAssetsText(std::string path);
 
     std::string buildFilePath(std::string path);
+};
+
+//windows 输入读取 
+class WindowsInput: public IInput{
+public:
+    WindowsInput(GLFWwindow *_window){
+        this->window = _window;
+    }
+
+    virtual int getKeyState(int key);
+private:
+    GLFWwindow *window;
 };
 
 #endif

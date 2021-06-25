@@ -54,5 +54,9 @@ unsigned char* AndroidResLoader::loadAssetsImage(std::string path,
     return data;
 }
 
+int AndroidInput::getKeyState(int key){
+  return APP_KEY_RELEASE;
+}
+
 
 

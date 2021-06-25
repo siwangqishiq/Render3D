@@ -10,6 +10,7 @@
 #include "TriangleApp.h"
 #include "CubeApp.h"
 #include "PlatformAndroid.h"
+#include "Skybox.h"
 
 #include "gl.h"
 
@@ -31,9 +32,12 @@ extern "C"
 JNIEXPORT void JNICALL
 Java_com_yoki_render_RenderNativeBridge_init(JNIEnv *env, jobject thiz) {
     // app = new TriangleApp();
-    app = new CubeApp();
+    //app = new CubeApp();
+    app = new SykBoxTestApp();
 
     app->setResLoader(std::make_shared<AndroidResLoader>());
+    app->setInput(std::make_shared<AndroidInput>());
+
     app->init();
 }
 

@@ -65,6 +65,7 @@ int main(int argc , char **argv){
 
     //平台相关接口实现
     app->setResLoader(std::make_shared<WindowsResLoader>());
+    app->setInput(std::make_shared<WindowsInput>(window));
 
     app->init();
     app->resize(screenWidth , screenHeight);

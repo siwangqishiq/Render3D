@@ -25,7 +25,7 @@ void Triangle::onInit(){
     );
 
     shader = Shader::buildGPUProgram(vertexSrc , fragSrc);
-    LOGE("shader id = %d\n" , shader.getProgramId());
+    //LOGE("shader id = %d\n" , shader.getProgramId());
 
     glGenVertexArrays(1 , &vao);
     glGenBuffers(1 , &vbo);

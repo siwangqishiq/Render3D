@@ -40,3 +40,7 @@ std::string WindowsResLoader::loadAssetsText(std::string path){
     return content;
 }
 
+int WindowsInput::getKeyState(int key){
+    return glfwGetKey(window , key);
+}
+

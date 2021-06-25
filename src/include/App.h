@@ -3,6 +3,7 @@
 
 #include <memory>
 #include "IResLoader.h"
+#include "IInput.h"
 #include <map>
 #include "Camera.h"
 
@@ -29,16 +30,24 @@ public:
     // resize when size changed
     virtual void resize(int width , int height);
 
+    //处理输入事件
+    virtual void processInput(int action);
+
     int mViewWidth;
     int mViewHeight;
     
     std::shared_ptr<IResLoader> resLoader = nullptr;
+    std::shared_ptr<IInput> input = nullptr;
 
     ~App();
 
     //根据不同平台 注入不同实现
     inline void setResLoader(std::shared_ptr<IResLoader> loader){
         this->resLoader = loader;
+    }
+
+    inline void setInput(std::shared_ptr<IInput> _input){
+        this->input = _input;
     }
 
     //载入2D纹理
